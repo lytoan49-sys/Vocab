@@ -81,12 +81,13 @@ class FloatingBubbleService : Service() {
             WindowManager.LayoutParams.TYPE_PHONE
         }
 
+        val bubbleSizePx = (56 * resources.displayMetrics.density).toInt()
+
         layoutParams = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
-            WindowManager.LayoutParams.WRAP_CONTENT,
+            bubbleSizePx,
+            bubbleSizePx,
             overlayType,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT
         )
         layoutParams.gravity = Gravity.TOP or Gravity.START
@@ -94,6 +95,15 @@ class FloatingBubbleService : Service() {
         layoutParams.y = 300
 
         windowManager.addView(view, layoutParams)
+        view.post {
+            layoutParams.width = bubbleSizePx
+            layoutParams.height = bubbleSizePx
+            try {
+                windowManager.updateViewLayout(view, layoutParams)
+            } catch (e: Exception) {
+                // ignore if view already detached
+            }
+        }
         setupTouchListener(view)
     }
 
