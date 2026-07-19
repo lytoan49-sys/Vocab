@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="64dp"
+    android:layout_height="64dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bubble_bg" />
+
+    <TextView
+        android:id="@+id/bubble_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="V"
+        android:textColor="@color/bubble_text"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+</FrameLayout>
