@@ -138,7 +138,7 @@ class FloatingBubbleService : Service() {
 
     private fun onBubbleTapped() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = clipboard.primaryClip()
+        val clip = clipboard.primaryClip
         val text = if (clip != null && clip.itemCount > 0) {
             clip.getItemAt(0).coerceToText(this).toString()
         } else {
